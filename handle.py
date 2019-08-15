@@ -9,18 +9,18 @@ import receive
 class Handle(object):
     def GET(self):
         try:
-            data = web.input()
+            data = web.input()              #获取web输入
             if len(data) == 0:
                 return "hello, this is handle view"
-            signature = data.signature
-            timestamp = data.timestamp
-            nonce = data.nonce
+            signature = data.signature       #获取输入signature
+            timestamp = data.timestamp       #获取输入时间
+            nonce = data.nonce             
             echostr = data.echostr
-            token = "ieee158800ciqujingnian"
+            token = "ieee158800ciqujingnian"   #设置token
             li = [token, timestamp, nonce]
-            li.sort()
-            sha1 = hashlib.sha1()
-            sha1.update(li[0].encode("utf-8"))
+            li.sort()                        #排序
+            sha1 = hashlib.sha1()            
+            sha1.update(li[0].encode("utf-8"))   
             sha1.update(li[1].encode("utf-8"))
             sha1.update(li[2].encode("utf-8"))
             hashcode = sha1.hexdigest()
